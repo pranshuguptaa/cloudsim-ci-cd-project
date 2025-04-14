@@ -42,6 +42,13 @@ public class CICDSimulation {
             String vmm = "Xen";
 
             Vm vm = new Vm(vmId, brokerId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
-            vmList
+            vmList.add(vm);
+        }
+
+        // 5. Create Cloudlets
+        List<Cloudlet> cloudletList = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            int cloudletId = i;
 
             
