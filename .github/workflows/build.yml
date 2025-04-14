@@ -1,32 +1,30 @@
-name: Java CI with CloudSim
+name: Java CI for My CloudSim Project
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up JDK
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
-        distribution: 'adopt'
+        java-version: '17'
+        distribution: 'temurin'
 
     - name: Compile Java files
       run: |
         mkdir -p classes
-        javac -d classes $(find examples -name "*.java")
-      
+        javac -cp "jars/*" -d classes $(find examples -name "*.java")
 
-    - name: Run Simulation
+    - name: Run MySimulation
       run: |
-        java -cp "classes:lib/*" mysim.MySimulation
+        java -cp "classes:jars/*" examples.mysim.MySimulation
