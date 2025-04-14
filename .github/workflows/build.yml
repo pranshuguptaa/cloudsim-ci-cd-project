@@ -20,13 +20,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Verify JARs exist
+      run: |
+        ls -la jars
+
     - name: Compile Java files
       run: |
         mkdir -p classes
-        find examples -name "*.java" > sources.txt
-        javac -cp "jars/*" -d classes @sources.txt
+        javac -cp "jars/*" -d classes $(find examples -name "*.java")
 
     - name: Run MySimulation
       run: |
         java -cp "classes:jars/*" mysim.MySimulation
-
