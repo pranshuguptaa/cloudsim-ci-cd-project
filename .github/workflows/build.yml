@@ -26,7 +26,9 @@ jobs:
     - name: Compile Java files
       run: |
         mkdir -p classes
-        javac -cp "jars/*" -d classes $(find examples -name "*.java")
-
+        find examples -name "*.java" > sources.txt
+        javac -cp "jars/*" -d classes @sources.txt
     - name: Run MySimulation
       run: java -cp "classes:jars/*" mysim.MySimulation
+
+
