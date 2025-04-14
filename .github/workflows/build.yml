@@ -1,4 +1,4 @@
-name: Java CI for My CloudSim Project
+name: Java CI with CloudSim
 
 on:
   push:
@@ -11,18 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up JDK 17
+    - name: Set up Java
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Verify JARs exist
-      run: |
-        ls -la jars
+    - name: List contents of jars folder
+      run: ls -l jars
 
     - name: Compile Java files
       run: |
@@ -30,5 +29,4 @@ jobs:
         javac -cp "jars/*" -d classes $(find examples -name "*.java")
 
     - name: Run MySimulation
-      run: |
-        java -cp "classes:jars/*" mysim.MySimulation
+      run: java -cp "classes:jars/*" mysim.MySimulation
