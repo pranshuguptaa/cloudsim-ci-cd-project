@@ -28,4 +28,5 @@ jobs:
 
     - name: Run MySimulation
       run: |
-        java -cp "classes:jars/*" examples.mysim.MySimulation
+        java -cp "classes:jars/*" mysim.MySimulation
+
