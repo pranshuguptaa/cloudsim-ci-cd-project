@@ -23,8 +23,9 @@ jobs:
 
     - name: Compile Java files
       run: |
-        mkdir classes
-        javac -cp "lib/*" -d classes src/mysim/*.java
+        mkdir -p classes
+        javac -d classes $(find examples -name "*.java")
+      
 
     - name: Run Simulation
       run: |
